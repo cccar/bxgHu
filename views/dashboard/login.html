@@ -10,20 +10,20 @@
     <div class="login">
         <div class="login-wrap">
             <div class="avatar">
-                <img src="./uploads/monkey.png" class="img-circle" alt="">
+                <img src="/views/static/uploads/monkey.png" class="img-circle" alt="">
             </div>
-            <form action="" class="col-xs-offset-1 col-xs-10">
+            <form action="" id="login-form" class="col-xs-offset-1 col-xs-10">
                 <div class="input-group input-group-lg">
                     <span class="input-group-addon">
                         <i class="fa fa-user"></i>
                     </span>
-                    <input type="text" class="form-control" placeholder="用户名">
+                    <input type="text" id="tc_name" name="tc_name" class="form-control" placeholder="用户名">
                 </div>
                 <div class="input-group input-group-lg">
                     <span class="input-group-addon">
                         <i class="fa fa-key"></i>
                     </span>
-                    <input type="password" class="form-control" placeholder="密码">
+                    <input type="password" id="tc_pass" name="tc_pass" class="form-control" placeholder="密码">
                 </div>
                 <button type="submit" class="btn btn-lg btn-primary btn-block">登 录</button>
             </form>
@@ -33,3 +33,45 @@
     <?php include "/views/public/js.html" ?>
 </body>
 </html>
+
+<script>
+        $('#login-form').submit(function(){
+            $(this).ajaxSubmit({
+                url:"/api/login",
+                type:"post",
+                success:function(data){
+                    
+                    if(data.code==200){
+                        console.log(data.result);
+                        $.cookie("userinfo",JSON.stringify(data.result),{path:'/'});
+                        location.href="/";
+                    }
+            
+                },
+                error:function(){
+                    console.log('请求出错')
+                }
+            });
+            return false;
+        });
+
+        // $(function(){
+        //     var username = $('#tc_name').val();
+        //     var userpass = $('#tc_pass').val();
+        //     $('#login-form').submit(function(){
+        //     $.ajax({
+        //           url:'http://api.botue.com/login',
+        //           type:'post',
+        //           data:{
+        //               tc_name:username,
+        //               tc_pass:userpass
+        //           },
+        //           success:function(data){
+        //                  console.log(data);
+        //           }
+        //     });
+        //     return false;
+        //     })
+
+        // })
+</script>
