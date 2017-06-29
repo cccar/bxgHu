@@ -30,48 +30,11 @@
         </div>
     </div>
     
-    <?php include "/views/public/js.html" ?>
 </body>
 </html>
+<script src="/views/public/libs/require.js"></script>
+<script src="/views/public/libs/config.js"></script>
 
 <script>
-        $('#login-form').submit(function(){
-            $(this).ajaxSubmit({
-                url:"/api/login",
-                type:"post",
-                success:function(data){
-                    
-                    if(data.code==200){
-                        console.log(data.result);
-                        $.cookie("userinfo",JSON.stringify(data.result),{path:'/'});
-                        location.href="/";
-                    }
-            
-                },
-                error:function(){
-                    console.log('请求出错')
-                }
-            });
-            return false;
-        });
-
-        // $(function(){
-        //     var username = $('#tc_name').val();
-        //     var userpass = $('#tc_pass').val();
-        //     $('#login-form').submit(function(){
-        //     $.ajax({
-        //           url:'http://api.botue.com/login',
-        //           type:'post',
-        //           data:{
-        //               tc_name:username,
-        //               tc_pass:userpass
-        //           },
-        //           success:function(data){
-        //                  console.log(data);
-        //           }
-        //     });
-        //     return false;
-        //     })
-
-        // })
+    require(["static/js/login"]);
 </script>
