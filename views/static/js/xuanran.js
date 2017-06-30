@@ -6,5 +6,8 @@
                         $('#userinfo').html(str);
             }
                       })
+
+
+        
  })
    

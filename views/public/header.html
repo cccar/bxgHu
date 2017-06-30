@@ -19,7 +19,7 @@
                 </a>
             </li>
             <li>
-                <a href="javascript:;">
+                <a href="javascript:;" id="exit">
                     <i class="fa fa-sign-out"></i>
                     退出
                 </a>
@@ -32,3 +32,8 @@
         </ul>
     </nav>          
 </div>
+<script src="/views/public/libs/require.js"></script>
+<script src="/views/public/libs/config.js"></script>
+<script>
+    require(['static/js/exit'])
+</script>
