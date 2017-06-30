@@ -4,6 +4,7 @@
                 $('#exit').click(function(){
                     $.ajax({
                       url:'/api/logout',
+                      type:'post',
                       success:function(data){
                          console.log(data)
                          if(data.code==200){
